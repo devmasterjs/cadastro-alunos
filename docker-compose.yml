@@ -1,0 +1,13 @@
+version: '3'
+
+services: 
+  mysqlsrv:
+    image: mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: 'MySql2021!'
+      MYSQL_DATABASE: 'alunos'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.docker/volumes/mysql:/var/lib/mysql
+      
