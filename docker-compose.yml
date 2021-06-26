@@ -5,7 +5,7 @@ services:
     image: mysql
     environment: 
       MYSQL_ROOT_PASSWORD: 'MySql2021!'
-      MYSQL_DATABASE: 'alunos'
+      MYSQL_DATABASE: 'escola'
     ports:
       - 3306:3306
     volumes:
