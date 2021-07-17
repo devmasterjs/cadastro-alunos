@@ -32,7 +32,7 @@ export default class User extends Model {
         defaultValue: '',
         validate: {
           len: {
-            args: [6, 12],
+            args: [6, 32],
             msg: 'A senha precisa possuir de 6 a 12 caracteres',
           },
         },
