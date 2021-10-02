@@ -4,7 +4,8 @@ class UserController {
   async create(request, response) {
     try {
       const newUser = await User.create(request.body);
-      return response.json(newUser);
+      const { id, name, email } = newUser;
+      return response.json({ id, name, email });
     } catch (e) {
       return response.status(400).json({
         errors: e.errors.map((error) => error.message),
@@ -14,7 +15,9 @@ class UserController {
 
   async index(request, response) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({
+        attributes: ['id', 'name', 'email'],
+      });
       if (users) {
         return response.json(users);
       }
@@ -26,9 +29,10 @@ class UserController {
 
   async show(request, response) {
     try {
-      const user = await User.findByPk(request.params.id);
+      const user = await User.findByPk(request.userId);
+      const { id, name, email } = user;
       if (user) {
-        return response.json(user);
+        return response.json({ id, name, email });
       }
       return response.status(400).json({ errors: 'Usuário não encontrado' });
     } catch (e) {
@@ -38,18 +42,15 @@ class UserController {
 
   async update(request, response) {
     try {
-      if (!request.params.id) {
-        return response.status(400).json({ errors: 'ID não enviado' });
-      }
-
-      const user = await User.findByPk(request.params.id);
+      const user = await User.findByPk(request.userId);
 
       if (!user) {
         return response.status(400).json({ errors: 'Usuário não encontrado' });
       }
 
       const updatedUser = await user.update(request.body);
-      return response.json(updatedUser);
+      const { id, name, email } = updatedUser;
+      return response.json({ id, name, email });
     } catch (e) {
       return response.status(400).json({
         errors: e.errors.map((error) => error.message),
