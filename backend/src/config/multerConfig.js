@@ -7,7 +7,7 @@ export default {
       callback(null, resolve(__dirname, '..', '..', 'uploads'));
     },
     filename: (req, file, callback) => {
-      callback(null, `${file.filename}-${Date.now()}${extname(file.originalname)}`);
+      callback(null, `${file.fieldname}-${Date.now()}${extname(file.originalname)}`);
     },
   }),
 };
