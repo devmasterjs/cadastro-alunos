@@ -1,9 +1,9 @@
 import Sequelize, { Model } from 'sequelize';
 
-export default class Aluno extends Model {
+export default class Student extends Model {
   static init(sequelize) {
     super.init({
-      nome: {
+      name: {
         type: Sequelize.STRING,
         defaultValue: '',
         validate: {
@@ -13,7 +13,7 @@ export default class Aluno extends Model {
           },
         },
       },
-      sobrenome: {
+      lastname: {
         type: Sequelize.STRING,
         defaultValue: '',
         validate: {
@@ -27,7 +27,7 @@ export default class Aluno extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
         unique: {
-          name: 'alunos.email',
+          name: 'students.email',
           msg: 'E-mail já existe.',
         },
         validate: {
@@ -36,7 +36,7 @@ export default class Aluno extends Model {
           },
         },
       },
-      idade: {
+      age: {
         type: Sequelize.INTEGER,
         defaultValue: '',
         validate: {
@@ -45,7 +45,7 @@ export default class Aluno extends Model {
           },
         },
       },
-      peso: {
+      weight: {
         type: Sequelize.FLOAT,
         defaultValue: '',
         validate: {
@@ -54,7 +54,7 @@ export default class Aluno extends Model {
           },
         },
       },
-      altura: {
+      height: {
         type: Sequelize.FLOAT,
         defaultValue: '',
         validate: {
