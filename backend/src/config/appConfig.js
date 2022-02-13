@@ -1,4 +1,4 @@
 export default {
-  url: 'http://localhost:3000',
-  imageFolder: 'images',
+  url: `${process.env.BASE_URL}:${process.env.DEFAULT_PORT}`,
+  imageFolder: process.env.IMAGE_FOLDER,
 };

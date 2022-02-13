@@ -11,7 +11,7 @@ export default {
   },
   storage: multer.diskStorage({
     destination: (req, file, callback) => {
-      callback(null, resolve(__dirname, '..', '..', 'uploads', appConfig.imageFolder));
+      callback(null, resolve(process.env.STATIC_DIR, 'uploads', appConfig.imageFolder));
     },
     filename: (req, file, callback) => {
       callback(null, `${file.fieldname}-${Date.now()}${extname(file.originalname)}`);
