@@ -11,7 +11,8 @@
     "startdb": "docker-compose -f docker-compose-mysql.yml up -d",
     "stopdb": "docker-compose -f docker-compose-mysql.yml down",
     "start": "npm run build && cp -v .env ./dist && pm2 start ./dist/server.js",
-    "stop": "pm2 stop ./dist/server.js && rm -rf ./dist/.env"
+    "stop": "pm2 stop ./dist/server.js && rm -rf ./dist/.env",
+    "image": "npm run deploy && docker build -f ./deploy/Dockerfile -t student-registration-api ."
   },
   "keywords": [],
   "author": "Marlo Eichenberg Motta <devmaster@programmerhero.com.br> (https://programmerhero.com.br/)",
