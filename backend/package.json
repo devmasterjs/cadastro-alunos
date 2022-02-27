@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/server.js",
     "build": "rm -rf ./dist && sucrase ./src -d ./dist --transforms imports",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "deploy": "npm run build && cp -v package.json ./dist"
   },
   "keywords": [],
   "author": "Marlo Eichenberg Motta <devmaster@programmerhero.com.br> (https://programmerhero.com.br/)",
