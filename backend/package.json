@@ -7,8 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/server.js",
     "build": "rm -rf ./dist && sucrase ./src -d ./dist --transforms imports",
-    "start": "node dist/server.js",
-    "deploy": "npm run build && cp -v package.json ./dist"
+    "deploy": "npm run build && cp -v package.json ./dist",
+    "startdb": "docker-compose -f docker-compose-mysql.yml up -d",
+    "stopdb": "docker-compose -f docker-compose-mysql.yml down",
+    "start": "npm run build && cp -v .env ./dist && pm2 start ./dist/server.js",
+    "stop": "pm2 stop ./dist/server.js && rm -rf ./dist/.env"
   },
   "keywords": [],
   "author": "Marlo Eichenberg Motta <devmaster@programmerhero.com.br> (https://programmerhero.com.br/)",
