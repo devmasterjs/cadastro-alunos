@@ -6,3 +6,4 @@ export const errorColor = '#F2AF29';
 export const warnColor = '#F2AF29';
 export const containerBackground = '#FFF';
 export const buttonFontColor = '#FFF';
+export const linkFontColor = '#FFF';
