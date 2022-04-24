@@ -1,15 +1,16 @@
-import { BrowserRouter } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import Header from './components/Header';
 import AppRoutes from './routes';
 import GlobalStyles from './styles/GlobalStyles';
+import history from './services/history';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <Header />
       <AppRoutes />
       <GlobalStyles />
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
