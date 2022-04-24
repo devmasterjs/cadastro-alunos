@@ -1,4 +1,5 @@
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Header from './components/Header';
 import AppRoutes from './routes';
 import GlobalStyles from './styles/GlobalStyles';
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <AppRoutes />
       <GlobalStyles />
+      <ToastContainer autoClose={3000} />
     </HistoryRouter>
   );
 }
