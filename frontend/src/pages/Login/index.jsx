@@ -5,14 +5,6 @@ import { Container } from '../../styles/GlobalStyles';
 import { Title } from './styled';
 
 export default function Login() {
-  useEffect(() => {
-    async function getData() {
-      const response = await axios.get('/students');
-      console.log(response);
-    }
-
-    getData();
-  }, []);
 
   const showMessage = () => {
     toast.success('Login realizado com sucesso');
