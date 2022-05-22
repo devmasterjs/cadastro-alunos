@@ -6,6 +6,7 @@ import jwtTokenRoutes from './routes/jwtTokenRouter';
 import photoRoutes from './routes/photoRouter';
 import studentRoutes from './routes/studentRouter';
 import userRoutes from './routes/userRouter';
+import cors from 'cors'
 
 class App {
   constructor() {
@@ -19,6 +20,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(express.static(resolve(process.env.STATIC_DIR, 'uploads')));
+    this.app.use(cors())
   }
 
   routes() {
