@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { Nav } from './styled';
 
 export default function Header() {
-  const usuarioLogado = useSelector((state) => state.usuarioLogado);
+  const usuarioLogado = useSelector(
+    (state) => state.loginReducer.usuarioLogado
+  );
 
   return (
     <Nav>
