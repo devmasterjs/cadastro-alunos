@@ -7,7 +7,7 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(action.doLogin());
+    dispatch(action.doLoginRequest());
   };
 
   return (
