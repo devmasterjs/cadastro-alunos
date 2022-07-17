@@ -5,7 +5,7 @@ export default function PrivateRoute({ component: Component, isClosed }) {
   const isLoggedIn = false;
 
   if (isClosed && !isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
   return <Component />;
