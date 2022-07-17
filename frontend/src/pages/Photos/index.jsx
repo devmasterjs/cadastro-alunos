@@ -1,9 +1,9 @@
 import { Container } from '../../styles/GlobalStyles';
 
-export default function Login() {
+export default function Photos() {
   return (
     <Container>
-      <h1>Login</h1>
+      <h1>Galeria de fotos</h1>
     </Container>
   );
 }
