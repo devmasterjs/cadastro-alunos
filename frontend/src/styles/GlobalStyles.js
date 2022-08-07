@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import * as colors from './colors';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { primaryColor, primaryDarkColor } from './colors';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default createGlobalStyle`
   * {
@@ -12,8 +12,8 @@ export default createGlobalStyle`
 
   body {
     font-family: sans-serif;
-    background: ${colors.primaryDarkColor};
-    color: ${colors.primaryColor};
+    background: ${primaryDarkColor};
+    color: ${primaryColor};
   }
 
   html, body, #root {
@@ -22,17 +22,22 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
-    background: ${colors.primaryColor};
+    background: ${primaryColor};
     border: none;
-    color: ${colors.buttonFontColor};
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.25rem;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
     font-weight: 700;
+    transition: all 300ms;
+
+    &:hover {
+      filter: brightness(85%);
+    }
   }
 
   a {
     text-decoration: none;
-    color: ${colors.primaryColor};
+    color: ${primaryColor}
   }
 
   ul {
@@ -41,10 +46,10 @@ export default createGlobalStyle`
 `;
 
 export const Container = styled.section`
-  max-width: 30rem;
-  background: ${colors.containerBackground};
-  margin: 1.875rem auto;
-  padding: 1.875rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+  max-width: 480px;
+  background: #fff;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
