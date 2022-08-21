@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import isEmail from 'validator/lib/isEmail';
 import { Container } from '../../styles/GlobalStyles';
 import { Form } from './styled';
+import * as actions from '../../store/modules/login/actions';
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -24,7 +27,7 @@ export default function Login() {
 
     if (formErrors) return;
 
-    toast.success('Validação do Formulário de Login efetuada com sucesso');
+    dispatch(actions.doLoginRequest({ email, password }));
   };
 
   return (

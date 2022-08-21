@@ -1,18 +1,20 @@
 import * as types from '../types';
 
 const INITIAL_STATE = {
-  usuarioLogado: false,
+  isLoggedIn: false,
+  token: false,
+  user: {},
+  isLoading: false,
 };
 
 const loginReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case types.LOGIN_REQUEST: {
+      console.log('REDUCER', action.payload);
       return state;
     }
     case types.LOGIN_SUCCESS: {
-      const newState = { ...state };
-      newState.usuarioLogado = !newState.usuarioLogado;
-      return newState;
+      return state;
     }
     case types.LOGIN_FAILURE: {
       return state;
