@@ -10,14 +10,17 @@ const INITIAL_STATE = {
 const loginReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case types.LOGIN_REQUEST: {
-      console.log('REDUCER', action.payload);
       return state;
     }
     case types.LOGIN_SUCCESS: {
-      return state;
+      const newState = { ...state };
+      newState.isLoggedIn = true;
+      newState.token = action.payload.token;
+      newState.user = action.payload.user;
+      return newState;
     }
     case types.LOGIN_FAILURE: {
-      return state;
+      return INITIAL_STATE;
     }
     default: {
       return state;

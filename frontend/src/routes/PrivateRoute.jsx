@@ -1,11 +1,12 @@
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 const getPreviousPath = (Component) =>
   Component.name === 'Students' ? '/' : Component.name.toLowerCase();
 
 export default function PrivateRoute({ component: Component, isClosed }) {
-  const isLoggedIn = false;
+  const isLoggedIn = useSelector((state) => state.loginReducer.isLoggedIn);
 
   if (isClosed && !isLoggedIn) {
     return (
