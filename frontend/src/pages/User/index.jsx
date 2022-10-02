@@ -1,16 +1,17 @@
 import { get } from 'lodash';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 import axios from '../../services/axios';
 import { Container } from '../../styles/GlobalStyles';
 import { Form } from './styled';
-import history from '../../services/history';
 
 export default function User() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ export default function User() {
         email,
       });
       toast.info(`Usuário ${response.data.name} cadastrado com sucesso`);
-      history.push('/login');
+      navigate('/login');
     } catch (error) {
       const errors = get(error, 'response.data.errors', []);
       errors.forEach((err) => toast.error(err));

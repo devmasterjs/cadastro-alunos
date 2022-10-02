@@ -1,8 +1,9 @@
 import * as types from '../types';
 
-export const doLoginRequest = (payload) => ({
+export const doLoginRequest = (payload, navigate) => ({
   type: types.LOGIN_REQUEST,
   payload,
+  navigate,
 });
 
 export const doLoginSuccess = (payload) => ({

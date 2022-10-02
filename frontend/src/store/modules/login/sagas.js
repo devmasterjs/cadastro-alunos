@@ -4,7 +4,6 @@ import { get } from 'lodash';
 import axios from '../../../services/axios';
 import * as types from '../types';
 import * as actions from './actions';
-import history from '../../../services/history';
 
 function* loginRequest(action) {
   try {
@@ -14,7 +13,7 @@ function* loginRequest(action) {
     yield put(actions.doLoginSuccess({ ...response.data }));
     toast.success('Usuário autenticado com sucesso');
     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
-    history.push(prevPath);
+    action.navigate(prevPath);
   } catch (error) {
     toast.error('Usuário ou senha inválidos');
     yield put(actions.doLoginFailure());

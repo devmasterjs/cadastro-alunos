@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import isEmail from 'validator/lib/isEmail';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { get } from 'lodash';
 import { Container } from '../../styles/GlobalStyles';
 import { Form } from './styled';
@@ -14,6 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const location = useLocation();
   const prevPath = get(location, 'state.prevPath', '/');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +32,7 @@ export default function Login() {
 
     if (formErrors) return;
 
-    dispatch(actions.doLoginRequest({ email, password, prevPath }));
+    dispatch(actions.doLoginRequest({ email, password, prevPath }, navigate));
   };
 
   return (
