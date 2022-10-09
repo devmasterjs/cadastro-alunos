@@ -26,8 +26,50 @@ function persistRehydrate({ payload }) {
   axios.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
-function* registerUserRequest({ payload }) {
-  yield console.log(payload);
+function* registerUserRequest({ payload, navigate }) {
+  const { id, name, email, password } = payload;
+
+  try {
+    if (id) {
+      yield call(axios.put, '/users', {
+        name,
+        email,
+        password: password || undefined,
+      });
+      toast.success('Conta alterada com sucesso');
+      yield put(
+        actions.doRegisterUserUpdatedSuccess({ name, email, password })
+      );
+    } else {
+      yield call(axios.post, '/users', {
+        name,
+        email,
+        password,
+      });
+      toast.success('Conta criada com sucesso');
+      yield put(
+        actions.doRegisterUserCreatedSuccess({ name, email, password })
+      );
+      navigate('/login');
+    }
+  } catch (e) {
+    const errors = get(e, 'response.data.errors', []);
+    const status = get(e, 'response.status', 0);
+
+    if (status === 401) {
+      toast.error('Você precisa fazer login novamente');
+      yield put(actions.doLoginFailure());
+      return navigate('/login');
+    }
+
+    if (errors.length > 0) {
+      errors.map((error) => toast.error(error));
+    } else {
+      toast.error('Erro desconhecido');
+    }
+    yield put(actions.doRegisterUserFailure());
+  }
+  return true;
 }
 
 export default all([
