@@ -91,7 +91,9 @@ export default function User() {
           />
         </label>
 
-        <button type="submit">Criar minha conta</button>
+        <button type="submit">
+          {authUser.id ? 'Salvar' : 'Criar minha conta'}
+        </button>
       </Form>
     </Container>
   );
