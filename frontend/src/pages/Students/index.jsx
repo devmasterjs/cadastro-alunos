@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
-import { ProfilePicture, StudentContainer } from './styled';
+import { NewStudentLink, ProfilePicture, StudentContainer } from './styled';
 import Loading from '../../components/Loading';
 
 export default function Students() {
@@ -62,6 +62,7 @@ export default function Students() {
     <Container>
       <Loading isLoading={isLoading} />
       <h1>Listagem de alunos</h1>
+      <NewStudentLink to="/student">Novo aluno</NewStudentLink>
 
       <StudentContainer>
         {students.map((student, index) => (
