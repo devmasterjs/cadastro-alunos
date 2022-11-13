@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isEmail, isInt, isFloat } from 'validator';
 import { get } from 'lodash';
 import { useDispatch } from 'react-redux';
+import { FaEdit, FaUserCircle } from 'react-icons/fa';
 import axios from '../../services/axios';
 import { Container } from '../../styles/GlobalStyles';
-import { Form } from './styled';
+import { Form, ProfilePicture, Title } from './styled';
 import Loading from '../../components/Loading';
 import * as actions from '../../store/modules/login/actions';
 
@@ -19,6 +20,7 @@ export default function Student() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [photo, setPhoto] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,6 +31,8 @@ export default function Student() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(`/students/${id}`);
+        const photoUrl = get(data, 'Photos[0].url', '');
+        setPhoto(photoUrl);
         setName(data.name);
         setLastname(data.lastname);
         setEmail(data.email);
@@ -152,7 +156,22 @@ export default function Student() {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>{id ? 'Editar aluno' : 'Novo aluno'}</h1>
+
+      <Title>{id ? 'Editar aluno' : 'Novo aluno'}</Title>
+
+      {id && (
+        <ProfilePicture>
+          {photo ? (
+            <img src={photo} alt={name} />
+          ) : (
+            <FaUserCircle size={180} color="#000" />
+          )}
+          <Link to={`/photos/${id}`}>
+            <FaEdit size={24} />
+          </Link>
+        </ProfilePicture>
+      )}
+
       <Form onSubmit={handleSubmit}>
         <input
           type="text"
